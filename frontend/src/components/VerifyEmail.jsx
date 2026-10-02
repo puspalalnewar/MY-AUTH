@@ -1,0 +1,13 @@
+import React from "react";
+
+const VerifyEmail = () => {
+  return (
+    <div className="flex flex-col justify-center gap-5 p-5">
+      <h1 className="text-3xl text-center">Verify Your Email First</h1>
+      <button className="bg-black text-white py-3.5 cursor-pointer">Verify Email</button>
+      <button className="bg-black text-white py-3.5 cursor-pointer">Udate Email</button>
+    </div>
+  );
+};
+
+export default VerifyEmail;
