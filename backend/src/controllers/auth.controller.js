@@ -1,6 +1,7 @@
 const userModel = require("../models/auth.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const sendEmail = require("../services/nodeMailer");
 
 const signupUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -67,6 +68,26 @@ const loginUser = async (req, res) => {
 };
 
 // send email verification otp to gmail
-const sendOtp = async (req, res) => {};
+const sendOtp = async (req, res) => {
+  const id = req.userId;
+  try {
+    const user = await userModel.findById(id);
+    const userEmail = user.email;
 
-module.exports = { signupUser, loginUser };
+    const value = 564782;
+
+    await sendEmail(userEmail, "OTP for email verification", value);
+
+    return res.status(200).json({
+      msg: "OTP send to your gmail",
+      success: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Internal server error",
+      success: false,
+    });
+  }
+};
+
+module.exports = { signupUser, loginUser, sendOtp };

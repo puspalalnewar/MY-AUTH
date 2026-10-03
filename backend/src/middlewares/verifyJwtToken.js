@@ -7,13 +7,16 @@ const verifyJwt = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({
         msg: "Authentication required",
-        success: false,
+        success: false, 
       });
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("Decoded token:", decoded);
+    console.log("User ID:", decoded.id);
 
     req.userId = decoded.id;
+
     next();
   } catch (error) {
     return res.status(401).json({
