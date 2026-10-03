@@ -74,9 +74,11 @@ const sendOtp = async (req, res) => {
     const user = await userModel.findById(id);
     const userEmail = user.email;
 
-    const value = 564782;
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    user.accountVerificationOtp = otp.toString();
+    await user.save();
 
-    await sendEmail(userEmail, "OTP for email verification", value);
+    await sendEmail(userEmail, "OTP for email verification", otp);
 
     return res.status(200).json({
       msg: "OTP send to your gmail",
@@ -90,4 +92,32 @@ const sendOtp = async (req, res) => {
   }
 };
 
-module.exports = { signupUser, loginUser, sendOtp };
+const verifyOtp = async (req, res) => {
+  const { frontendOtp } = req.body;
+  const id = req.userId;
+  try {
+    const user = await userModel.findById(id);
+    const emailVerificationOtp = user.accountVerificationOtp;
+    if (frontendOtp == emailVerificationOtp) {
+      user.isAccountVerified = true;
+      user.accountVerificationOtp = "";
+      await user.save();
+      return res.status(200).json({
+        msg: "Account verified successfully!!",
+        success: true,
+      });
+    } else {
+      return res.status(401).json({
+        msg: "Invalid OTP",
+        success: false,
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Internal server error",
+      success: false,
+    });
+  }
+};
+
+module.exports = { signupUser, loginUser, sendOtp, verifyOtp };
