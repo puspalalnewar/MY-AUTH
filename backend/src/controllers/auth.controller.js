@@ -1,5 +1,6 @@
 const userModel = require("../models/auth.model");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const signupUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -37,9 +38,16 @@ const loginUser = async (req, res) => {
     if (user) {
       const decodedPassword = await bcrypt.compare(password, user.password);
       if (decodedPassword) {
-        return res
-          .status(200)
-          .json({ msg: "User logged in successfully", success: true });
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+          expiresIn: "24h",
+        });
+        res.cookie("token", token);
+        return res.status(200).json({
+          msg: "User logged in successfully",
+          token: token,
+          name: user.name,
+          success: true,
+        });
       } else {
         return res
           .status(409)
@@ -58,8 +66,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-const verifyEmail = async (req, res) => {
-  
-};
+// send email verification otp to gmail
+const sendOtp = async (req, res) => {};
 
 module.exports = { signupUser, loginUser };
