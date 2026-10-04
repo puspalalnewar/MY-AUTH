@@ -6,6 +6,7 @@ import Landing from "./components/Landing";
 import Home from "./components/Home";
 import VerifyEmail from "./components/VerifyEmail";
 import EnterOtp from "./components/EnterOtp";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/enterotp" element={<EnterOtp />} />
         <Route path="/home" element={<Home />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 };
