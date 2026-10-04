@@ -47,6 +47,7 @@ const loginUser = async (req, res) => {
           msg: "User logged in successfully",
           token: token,
           name: user.name,
+          isAccountVerified : user.isAccountVerified,
           success: true,
         });
       } else {
