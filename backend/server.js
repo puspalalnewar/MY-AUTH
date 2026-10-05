@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 
 app.use(
   cors({
-    origin: "https://my-auth-ui.vercel.app/",
+    origin: "https://my-auth-ui.vercel.app",
     credentials: true,
   }),
 );
