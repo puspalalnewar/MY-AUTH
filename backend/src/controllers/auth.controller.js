@@ -98,12 +98,12 @@ const sendOtp = async (req, res) => {
 };
 
 const verifyOtp = async (req, res) => {
-  const { frontendOtp } = req.body;
+  const { otp } = req.body;
   const id = req.userId;
   try {
     const user = await userModel.findById(id);
     const emailVerificationOtp = user.accountVerificationOtp;
-    if (frontendOtp == emailVerificationOtp) {
+    if (otp == emailVerificationOtp) {
       user.isAccountVerified = true;
       user.accountVerificationOtp = "";
       await user.save();
