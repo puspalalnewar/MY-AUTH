@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const EnterOtp = () => {
   const navigate = useNavigate();
 
-  const url = "http://localhost:8000/auth/verifyotp";
+  const url = "https://my-auth-api-theta.vercel.app/auth/verifyotp";
 
   const verifyOtp = async () => {
     const response = await fetch(url, {

@@ -8,7 +8,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const isUserVerified = async () => {
-    const url = "http://localhost:8000/auth/isuserverified";
+    const url = "https://my-auth-api-theta.vercel.app/auth/isuserverified";
     const response = await fetch(url, {
       method: "POST",
       credentials: "include",

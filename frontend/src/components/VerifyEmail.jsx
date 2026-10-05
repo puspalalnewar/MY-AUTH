@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const VerifyEmail = () => {
   const sendOtp = async () => {
     try {
-      const url = "http://localhost:8000/auth/sendotp";
+      const url = "https://my-auth-api-theta.vercel.app/auth/sendotp";
       const response = await fetch(url, {
         method: "POST",
         credentials: "include",

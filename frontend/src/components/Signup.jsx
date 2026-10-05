@@ -16,7 +16,7 @@ const Signup = () => {
     return;
   };
 
-  const url = "http://localhost:8000/auth/signup";
+  const url = "https://my-auth-api-theta.vercel.app/auth/signup";
 
   const fetchAPI = async (url, data) => {
     try {
