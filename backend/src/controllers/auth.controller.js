@@ -42,12 +42,16 @@ const loginUser = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
           expiresIn: "24h",
         });
-        res.cookie("token", token);
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: false,
+          sameSite: "lax",
+        });
         return res.status(200).json({
           msg: "User logged in successfully",
           token: token,
           name: user.name,
-          isAccountVerified : user.isAccountVerified,
+          isAccountVerified: user.isAccountVerified,
           success: true,
         });
       } else {
