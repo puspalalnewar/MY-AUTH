@@ -125,4 +125,27 @@ const verifyOtp = async (req, res) => {
   }
 };
 
-module.exports = { signupUser, loginUser, sendOtp, verifyOtp };
+const isUserVerified = async (req, res) => {
+  const id = req.userId;
+  try {
+    const user = await userModel.findById(id);
+    if (user.isAccountVerified) {
+      return res.status(200).json({
+        msg: "User is verified.",
+        success: true,
+      });
+    } else {
+      return res.status(401).json({
+        msg: "User not verified!!",
+        success: false,
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Internal server error",
+      success: false,
+    });
+  }
+};
+
+module.exports = { signupUser, loginUser, sendOtp, verifyOtp, isUserVerified };
