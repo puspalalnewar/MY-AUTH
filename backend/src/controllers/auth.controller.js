@@ -132,6 +132,7 @@ const isUserVerified = async (req, res) => {
     if (user.isAccountVerified) {
       return res.status(200).json({
         msg: "User is verified.",
+        userName: user.name,
         success: true,
       });
     } else {

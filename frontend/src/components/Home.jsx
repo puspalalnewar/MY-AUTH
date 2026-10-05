@@ -2,10 +2,11 @@ import React from "react";
 import Navbar from "./Navbar";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Home = () => {
   const navigate = useNavigate();
-
+  const [userName, setUserName] = useState("");
   const isUserVerified = async () => {
     const url = "http://localhost:8000/auth/isuserverified";
     const response = await fetch(url, {
@@ -14,7 +15,8 @@ const Home = () => {
     });
     const result = await response.json();
     if (result.success) {
-      return toast.success("You are verified!!");
+      setUserName(result.userName);
+      return;
     } else {
       navigate("/login");
       return toast.error("user is not verified.");
@@ -24,7 +26,10 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <p className="text-2xl font-bold pt-10">Home</p>
+      <p className="text-2xl pt-10 mt-5 text-center">
+        Namaste🙏,{" "}
+        <span className="font-bold"> {userName.toUpperCase()} ✋</span>
+      </p>
     </div>
   );
 };
