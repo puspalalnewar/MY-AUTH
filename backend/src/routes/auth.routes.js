@@ -13,7 +13,7 @@ const router = express.Router();
 router.post("/signup", signupUser);
 router.post("/login", loginUser);
 router.post("/sendotp", verifyJwt, sendOtp);
-router.post("/verifyotp", verifyJwt, verifyOtp);
+router.post("/verifyotp", verifyOtp);
 router.post("/isuserverified", verifyJwt, isUserVerified);
 
 module.exports = router;
