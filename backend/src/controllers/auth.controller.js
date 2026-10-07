@@ -159,4 +159,31 @@ const isUserVerified = async (req, res) => {
   }
 };
 
-module.exports = { signupUser, loginUser, sendOtp, verifyOtp, isUserVerified };
+const logoutUser = async (req, res) => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
+
+    return res.status(200).json({
+      msg: "User logged out successfully",
+      success: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Internal server error",
+      success: false,
+    });
+  }
+};
+
+module.exports = {
+  signupUser,
+  loginUser,
+  sendOtp,
+  verifyOtp,
+  isUserVerified,
+  logoutUser,
+};

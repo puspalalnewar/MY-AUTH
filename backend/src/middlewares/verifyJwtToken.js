@@ -6,7 +6,7 @@ const verifyJwt = async (req, res, next) => {
 
     if (!token) {
       return res.status(401).json({
-        msg: "Authentication required",
+        msg: "JWT token expired!!",
         success: false,
       });
     }
