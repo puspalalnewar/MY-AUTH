@@ -67,7 +67,7 @@ const Login = () => {
     <div className="min-h-screen bg-black text-white">
       <div className="flex min-h-screen items-center justify-center px-5 py-10">
         <div className="grid w-full max-w-5xl overflow-hidden rounded-3xl border border-gray-800 bg-gray-950 shadow-2xl md:grid-cols-2">
-          <div className="hidden flex-col justify-between bg-gradient-to-br from-green-400/20 via-black to-blue-500/10 p-10 md:flex">
+          <div className="hidden flex-col justify-between bg-linear-to-br from-green-400/20 via-black to-blue-500/10 p-10 md:flex">
             <div>
               <div className="flex items-center gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-400 font-bold text-black">
