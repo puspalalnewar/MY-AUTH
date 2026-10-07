@@ -31,8 +31,8 @@ const Signup = () => {
       });
       const result = await response.json();
       if (result.success == true) {
-        navigate("/login");
-        return toast.success(result.msg);
+        navigate("/enterotp");
+        return toast.success("Otp sent your gmail!!")
       } else {
         return toast.error(result.msg.message || result.msg);
       }

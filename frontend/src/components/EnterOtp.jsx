@@ -15,26 +15,27 @@ const EnterOtp = () => {
         "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify(otp),
+      body: JSON.stringify(data),
     });
     const result = await response.json();
     if (result.success == true) {
-      navigate("/home");
+      navigate("/login");
       return toast.success(result.msg);
     } else {
       return toast.error(result.msg);
     }
   };
 
-  const [otp, setOtp] = useState({
-    userOtp: "",
+  const [data, setData] = useState({
+    email: "",
+    otp: "",
   });
 
   const handleOnChange = (e) => {
     const { value, name } = e.target;
-    const copyOtp = { ...otp };
-    copyOtp[name] = value;
-    setOtp(copyOtp);
+    const copyData = { ...data };
+    copyData[name] = value;
+    setData(copyData);
   };
 
   const handleSubmitOtp = async () => {
@@ -44,7 +45,14 @@ const EnterOtp = () => {
   return (
     <div className="p-4">
       <div className="border-2 border-green-500 p-4 flex flex-col justify-center gap-4">
-        <label htmlFor="">Enter OTP Here</label>
+        <label htmlFor="">Enter Gmail</label>
+        <input
+          type="email"
+          name="email"
+          className="border-2 border-blue-500 outline-0 rounded-xl px-4 py-2"
+          onChange={(e) => handleOnChange(e)}
+        />
+        <label htmlFor="">Enter OTP</label>
         <input
           type="text"
           name="otp"
