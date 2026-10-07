@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
 const allowedOrigins = [
   "http://localhost:5173",
   "https://my-auth-ui.vercel.app",
+  "https://my-auth-five.vercel.app",
 ];
 
 app.use(
