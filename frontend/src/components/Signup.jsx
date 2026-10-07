@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Signup = () => {
   const [details, setDetails] = useState({
@@ -16,7 +17,7 @@ const Signup = () => {
     return;
   };
 
-  const url = "https://my-auth-api-theta.vercel.app/auth/signup";
+  const url = `${API_URL}/auth/signup`;
 
   const fetchAPI = async (url, data) => {
     try {

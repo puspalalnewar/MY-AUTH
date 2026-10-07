@@ -3,12 +3,13 @@ import Navbar from "./Navbar";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Home = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const isUserVerified = async () => {
-    const url = "https://my-auth-api-theta.vercel.app/auth/isuserverified";
+    const url = `${API_URL}/auth/isuserverified`;
     const response = await fetch(url, {
       method: "POST",
       credentials: "include",

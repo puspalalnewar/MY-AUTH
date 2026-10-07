@@ -15,9 +15,14 @@ app.get("/", (req, res) => {
   res.send("Hello this is from backend!!");
 });
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://my-auth-ui.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "https://my-auth-ui.vercel.app",
+    origin: allowedOrigins,
     credentials: true,
   }),
 );

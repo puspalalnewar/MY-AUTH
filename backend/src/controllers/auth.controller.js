@@ -2,6 +2,7 @@ const userModel = require("../models/auth.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sendEmail = require("../services/nodeMailer");
+const isProduction = process.env.NODE_ENV === "production";
 
 const signupUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -44,8 +45,8 @@ const loginUser = async (req, res) => {
         });
         res.cookie("token", token, {
           httpOnly: true,
-          secure: true,
-          sameSite: "none",
+          secure: isProduction,
+          sameSite: isProduction ? "none" : "lax",
         });
         return res.status(200).json({
           msg: "User logged in successfully",

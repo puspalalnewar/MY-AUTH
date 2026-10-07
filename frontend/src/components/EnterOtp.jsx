@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const EnterOtp = () => {
   const navigate = useNavigate();
 
-  const url = "https://my-auth-api-theta.vercel.app/auth/verifyotp";
+  const url = `${API_URL}/auth/verifyotp`;
 
   const verifyOtp = async () => {
     const response = await fetch(url, {
