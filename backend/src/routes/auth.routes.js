@@ -6,6 +6,7 @@ const {
   verifyOtp,
   isUserVerified,
   logoutUser,
+  isUserAuth,
 } = require("../controllers/auth.controller");
 const verifyJwt = require("../middlewares/verifyJwtToken");
 
@@ -17,5 +18,6 @@ router.post("/sendotp", verifyJwt, sendOtp);
 router.post("/verifyotp", verifyOtp);
 router.post("/isuserverified", verifyJwt, isUserVerified);
 router.post("/logout", logoutUser);
+router.get("/user", verifyJwt, isUserAuth);
 
 module.exports = router;

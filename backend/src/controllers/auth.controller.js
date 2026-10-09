@@ -179,6 +179,13 @@ const logoutUser = async (req, res) => {
   }
 };
 
+const isUserAuth = async (req, res) => {
+  return res.status(200).json({
+    msg: "user is authenticated",
+    success: true,
+  });
+};
+
 module.exports = {
   signupUser,
   loginUser,
@@ -186,4 +193,5 @@ module.exports = {
   verifyOtp,
   isUserVerified,
   logoutUser,
+  isUserAuth,
 };
