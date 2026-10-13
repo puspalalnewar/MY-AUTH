@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { FaEnvelope, FaLock, FaArrowRight, FaBookOpen } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaArrowRight, FaGlobe } from "react-icons/fa";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -58,62 +58,66 @@ const EnterOtp = () => {
     <div className="min-h-screen bg-black text-white">
       <div className="flex min-h-screen items-center justify-center px-5 py-10">
         <div className="grid w-full max-w-5xl overflow-hidden rounded-3xl border border-gray-800 bg-gray-950 shadow-2xl md:grid-cols-2">
-          <div className="hidden flex-col justify-between bg-linear-to-br from-green-400/20 via-black to-blue-500/10 p-10 md:flex">
+          {/* Left Section */}
+          <div className="hidden flex-col justify-between bg-gray-900 p-10 md:flex">
             <div>
               <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-400 font-bold text-black">
-                  PN
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500 text-white">
+                  <FaGlobe size={25} />
                 </div>
 
                 <div>
-                  <h1 className="font-bold text-lg">Puspalal Newar</h1>
+                  <h1 className="text-lg font-bold">Puspalal Newar</h1>
 
-                  <p className="text-sm text-gray-500">
-                    Study & Technology Blog
+                  <p className="text-sm text-gray-400">
+                    Geopolitics & World Affairs
                   </p>
                 </div>
               </div>
 
               <div className="mt-20">
-                <FaBookOpen className="mb-6 text-5xl text-green-400" />
+                <FaGlobe className="mb-6 text-5xl text-blue-400" />
 
                 <h2 className="text-4xl font-bold leading-tight">
                   One step
                   <br />
-                  <span className="text-green-400">away.</span>
+                  <span className="text-blue-400">away.</span>
                 </h2>
 
                 <p className="mt-5 max-w-md leading-7 text-gray-400">
-                  Verify your email address to activate your PN Blog account and
-                  start your learning journey.
+                  Verify your email address to activate your account and explore
+                  geopolitics, international relations, and world affairs.
                 </p>
               </div>
             </div>
 
             <p className="text-sm text-gray-600">
-              © 2026 PN Blog. Learn something new every day.
+              © {new Date().getFullYear()} Puspalal Newar. All rights reserved.
             </p>
           </div>
 
+          {/* Right Section */}
           <div className="p-6 sm:p-10">
             <div className="mb-8 flex items-center gap-3 md:hidden">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-400 font-bold text-black">
-                PN
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500 text-white">
+                <FaGlobe size={22} />
               </div>
 
               <div>
                 <h1 className="font-bold">Puspalal Newar</h1>
 
-                <p className="text-xs text-gray-500">Study & Technology Blog</p>
+                <p className="text-xs text-gray-400">
+                  Geopolitics & World Affairs
+                </p>
               </div>
             </div>
 
-            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-green-400/10">
-              <FaLock className="text-xl text-green-400" />
+            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500/10">
+              <FaLock className="text-xl text-blue-400" />
             </div>
 
             <div className="mb-8">
-              <p className="mb-2 text-sm font-medium text-green-400">
+              <p className="mb-2 text-sm font-medium text-blue-400">
                 EMAIL VERIFICATION
               </p>
 
@@ -127,6 +131,7 @@ const EnterOtp = () => {
               </p>
             </div>
 
+            {/* OTP Form */}
             <form onSubmit={handleSubmitOtp} className="flex flex-col gap-5">
               <div>
                 <label className="mb-2 block text-sm font-medium text-gray-300">
@@ -143,7 +148,7 @@ const EnterOtp = () => {
                     value={data.email}
                     onChange={handleOnChange}
                     required
-                    className="w-full rounded-xl border border-gray-800 bg-black py-3.5 pl-11 pr-4 text-white outline-none transition placeholder:text-gray-600 focus:border-green-400"
+                    className="w-full rounded-xl border border-gray-800 bg-black py-3.5 pl-11 pr-4 text-white outline-none transition placeholder:text-gray-600 focus:border-blue-400"
                   />
                 </div>
               </div>
@@ -165,14 +170,14 @@ const EnterOtp = () => {
                     maxLength="6"
                     inputMode="numeric"
                     required
-                    className="w-full rounded-xl border border-gray-800 bg-black py-3.5 pl-11 pr-4 text-center text-xl tracking-[0.5em] text-white outline-none transition placeholder:text-sm placeholder:tracking-normal placeholder:text-gray-600 focus:border-green-400"
+                    className="w-full rounded-xl border border-gray-800 bg-black py-3.5 pl-11 pr-4 text-center text-xl tracking-[0.5em] text-white outline-none transition placeholder:text-sm placeholder:tracking-normal placeholder:text-gray-600 focus:border-blue-400"
                   />
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-green-400 py-3.5 font-semibold text-black transition hover:bg-green-300"
+                className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-blue-500 py-3.5 font-semibold text-white transition hover:bg-blue-600"
               >
                 Verify Email
                 <FaArrowRight />
@@ -183,7 +188,7 @@ const EnterOtp = () => {
               Already verified?
               <button
                 onClick={() => navigate("/login")}
-                className="ml-2 font-semibold text-green-400 hover:text-green-300"
+                className="ml-2 font-semibold text-blue-400 hover:text-blue-300"
               >
                 Login
               </button>

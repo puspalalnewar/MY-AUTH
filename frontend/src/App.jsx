@@ -7,17 +7,27 @@ import Home from "./components/Home";
 import VerifyEmail from "./components/VerifyEmail";
 import EnterOtp from "./components/EnterOtp";
 import { ToastContainer } from "react-toastify";
+import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./components/NotFound";
+import PublicRoute from "./components/PublicRoute";
 
 const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Landing />}></Route>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/verifyemail" element={<VerifyEmail />} />
-        <Route path="/enterotp" element={<EnterOtp />} />
-        <Route path="/home" element={<Home />} />
+        <Route element={<PublicRoute />}>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/verifyemail" element={<VerifyEmail />} />
+          <Route path="/enterotp" element={<EnterOtp />} />
+        </Route>
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/home" element={<Home />} />
+        </Route>
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer />
     </div>

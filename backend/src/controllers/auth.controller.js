@@ -139,6 +139,12 @@ const isUserVerified = async (req, res) => {
   const id = req.userId;
   try {
     const user = await userModel.findById(id);
+    if (!user) {
+      return res.status(401).json({
+        msg: "Unauthorized user",
+        success: false,
+      });
+    }
     if (user.isAccountVerified) {
       return res.status(200).json({
         msg: "User is verified.",

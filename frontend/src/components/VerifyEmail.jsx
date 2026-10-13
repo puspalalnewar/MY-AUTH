@@ -39,9 +39,6 @@ const VerifyEmail = () => {
       >
         Verify Email
       </button>
-      <button className="bg-black text-white py-3.5 cursor-pointer">
-        Udate Email
-      </button>
     </div>
   );
 };
